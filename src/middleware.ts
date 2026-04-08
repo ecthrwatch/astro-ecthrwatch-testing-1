@@ -1,28 +1,38 @@
 import { defineMiddleware } from "astro:middleware";
+import type { Locale } from "./i18n/translations";
+import { languages } from "./i18n/translations";
 
 /**
- * Dev-mode middleware that redirects "/" to the correct locale
- * based on the port number. This mimics the production subdomain
- * setup where each language has its own URL.
+ * Determines the active locale for each request.
  *
- * Port mapping:
- *   4321 → /en/
- *   4322 → /fr/
- *   4323 → /zh-cn/
+ * Dev mode:  port → locale (4321=en, 4322=fr, 4323=zh-cn)
+ * Build:     LOCALE env var (e.g. LOCALE=fr npm run build)
+ * Fallback:  "en"
  */
-const portToLocale: Record<number, string> = {
-  4321: "/en/",
-  4322: "/fr/",
-  4323: "/zh-cn/",
+const portToLocale: Record<number, Locale> = {
+  4321: "en",
+  4322: "fr",
+  4323: "zh-cn",
 };
 
-export const onRequest = defineMiddleware((context, next) => {
-  if (context.url.pathname === "/") {
-    const port = context.url.port ? Number(context.url.port) : 4321;
-    const locale = portToLocale[port];
-    if (locale) {
-      return context.redirect(locale);
-    }
+function resolveLocale(url: URL): Locale {
+  // 1. Environment variable (used during static builds)
+  const envLocale = import.meta.env.LOCALE || process.env.LOCALE;
+  if (envLocale && envLocale in languages) {
+    return envLocale as Locale;
   }
+
+  // 2. Port-based detection (used during dev)
+  const port = url.port ? Number(url.port) : 4321;
+  if (port in portToLocale) {
+    return portToLocale[port];
+  }
+
+  // 3. Fallback
+  return "en";
+}
+
+export const onRequest = defineMiddleware((context, next) => {
+  context.locals.locale = resolveLocale(context.url);
   return next();
 });
