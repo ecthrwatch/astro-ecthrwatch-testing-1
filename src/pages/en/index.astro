@@ -1,0 +1,9 @@
+---
+import Base from "../../layouts/Base.astro";
+import { t } from "../../i18n/utils";
+
+const locale = "en";
+---
+<Base locale={locale}>
+  <h1>{t(locale, "hello.world")}</h1>
+</Base>
