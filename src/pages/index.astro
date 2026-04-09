@@ -1,10 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
-import { t } from "../i18n/utils";
 import type { Locale } from "../i18n/translations";
 
 const locale = Astro.locals.locale as Locale;
 ---
-<Base locale={locale}>
-  <h1>{t(locale, "hello.world")}</h1>
-</Base>
+<Base locale={locale} />
