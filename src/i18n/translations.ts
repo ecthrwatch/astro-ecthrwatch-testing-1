@@ -18,6 +18,38 @@ export const devPorts: Record<Locale, number> = {
   "zh-cn": 4323,
 };
 
+export const navKeys = [
+  "nav.timeline",
+  "nav.cia",
+  "nav.china",
+  "nav.legal",
+  "nav.ai",
+] as const;
+
+export const navSlugs: Record<Locale, Record<string, string>> = {
+  en: {
+    "nav.timeline": "timeline-of-events-and-open-letters",
+    "nav.cia": "cia-dod-and-other-foreign-intelligence-involvement",
+    "nav.china": "torture-and-death-penalty-risks-in-china",
+    "nav.legal": "ongoing-legal-proceedings",
+    "nav.ai": "analyses-by-artificial-intelligence-confirming-mcdonalds-crimes",
+  },
+  fr: {
+    "nav.timeline": "chronologie-des-faits-et-lettres-ouvertes",
+    "nav.cia": "cia-et-implication-d-autres-services-de-renseignement-etrangers",
+    "nav.china": "risques-de-torture-et-de-peine-de-mort-en-chine",
+    "nav.legal": "procedures-judiciaires-en-cours",
+    "nav.ai": "analyses-par-intelligence-artificielle-confirmant-les-fraudes-de-mcdonalds",
+  },
+  "zh-cn": {
+    "nav.timeline": "shishi-jingguo-yu-gongkaixin-shijianxian",
+    "nav.cia": "cia-mi6-ji-faguo-qingbao-jigou-canyu",
+    "nav.china": "xingxun-yu-sixing-fengxian-zai-zhongguo",
+    "nav.legal": "zhengzai-jinxing-de-falu-chengxu",
+    "nav.ai": "rengong-zhineng-fenxi-queren-maidanglao-fanzui",
+  },
+};
+
 export const translations: Record<Locale, Record<string, string>> = {
   en: {
     "site.title": "ECTHRwatch.org",
@@ -28,6 +60,12 @@ export const translations: Record<Locale, Record<string, string>> = {
     "nav.china": "Death Penalty Risks in China",
     "nav.legal": "Legal Proceedings",
     "nav.ai": "Analyses by AI",
+
+    "page.timeline": "Timeline of Events and Open Letters",
+    "page.cia": "CIA, DoD, and Other Foreign Intelligence Involvement",
+    "page.china": "Torture and Death Penalty Risks in China",
+    "page.legal": "Ongoing Legal Proceedings",
+    "page.ai": "Analyses by Artificial Intelligence Confirming McDonald's Crimes",
 
     "theme.light": "Light",
     "theme.dark": "Dark",
@@ -46,6 +84,12 @@ export const translations: Record<Locale, Record<string, string>> = {
     "nav.legal": "Procédures Judiciaires",
     "nav.ai": "Analyses par IA",
 
+    "page.timeline": "Chronologie des faits et lettres ouvertes",
+    "page.cia": "CIA et implication d'autres services de renseignement étrangers",
+    "page.china": "Risques de torture et de peine de mort en Chine",
+    "page.legal": "Procédures judiciaires en cours",
+    "page.ai": "Analyses par intelligence artificielle confirmant les fraudes de McDonald's",
+
     "theme.light": "Mode jour",
     "theme.dark": "Mode nuit",
     "theme.auto": "Mode automatique",
@@ -62,6 +106,12 @@ export const translations: Record<Locale, Record<string, string>> = {
     "nav.china": "刑讯与死刑风险在中国",
     "nav.legal": "正在进行的司法程序",
     "nav.ai": "人工智能分析",
+
+    "page.timeline": "事实经过与公开信时间线",
+    "page.cia": "CIA、MI6及法国情报机构参与",
+    "page.china": "刑讯与死刑风险在中国",
+    "page.legal": "正在进行的法律程序",
+    "page.ai": "人工智能分析确认麦当劳犯罪",
 
     "theme.light": "浅色",
     "theme.dark": "深色",
