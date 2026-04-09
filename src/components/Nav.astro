@@ -1,7 +1,7 @@
 ---
 import { t } from "../i18n/utils";
 import type { Locale } from "../i18n/translations";
-import { languages, siteUrls, devPorts } from "../i18n/translations";
+import { languages, siteUrls, devPorts, navKeys, navSlugs } from "../i18n/translations";
 import ThemeToggle from "./ThemeToggle.astro";
 
 interface Props {
@@ -9,14 +9,6 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-
-const navItems = [
-  { key: "nav.timeline" },
-  { key: "nav.cia" },
-  { key: "nav.china" },
-  { key: "nav.legal" },
-  { key: "nav.ai" },
-];
 
 const isDev = import.meta.env.DEV;
 
@@ -43,8 +35,8 @@ function langUrl(target: Locale): string {
     </button>
 
     <ul class="nav-links">
-      {navItems.map((item) => (
-        <li><a href="#">{t(locale, item.key)}</a></li>
+      {navKeys.map((key) => (
+        <li><a href={`/${navSlugs[locale][key]}/`}>{t(locale, key)}</a></li>
       ))}
     </ul>
 
