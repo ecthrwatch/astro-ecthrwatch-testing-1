@@ -10,6 +10,8 @@ export function getStaticPaths() {
 
   for (const locale of Object.keys(navSlugs) as Locale[]) {
     for (const key of navKeys) {
+      // Timeline has its own dedicated route
+      if (key === "nav.timeline") continue;
       paths.push({
         params: { slug: navSlugs[locale][key] },
         props: { sectionKey: key },

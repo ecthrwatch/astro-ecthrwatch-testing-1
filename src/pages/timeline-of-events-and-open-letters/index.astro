@@ -1,0 +1,78 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+import { t } from "../../i18n/utils";
+import type { Locale } from "../../i18n/translations";
+
+const locale = Astro.locals.locale as Locale;
+const siteDomain = Astro.locals.siteDomain;
+
+const allEvents = await getCollection("timeline");
+
+const events = allEvents
+  .filter((e) => !e.data.draft)
+  .filter((e) => {
+    const websites = e.data.CONF_websites ?? "";
+    return websites.includes(siteDomain);
+  })
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<Base locale={locale}>
+  <div class="page-container">
+    <h1>{t(locale, "page.timeline")}</h1>
+    <ol class="timeline-list">
+      {events.map((event) => (
+        <li>
+          <a href={`/timeline-of-events-and-open-letters/${event.data.slug}/`}>
+            <span class="timeline-date">
+              {event.data.date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+            {" "}
+            {event.data.description}
+          </a>
+        </li>
+      ))}
+    </ol>
+    {events.length === 0 && <p>No events found.</p>}
+  </div>
+</Base>
+
+<style>
+  .page-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .page-container h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+
+  .timeline-list {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-list li {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .timeline-list a {
+    text-decoration: none;
+  }
+
+  .timeline-list a:hover {
+    text-decoration: underline;
+  }
+
+  .timeline-date {
+    color: #c0392b;
+    font-weight: 600;
+  }
+</style>
