@@ -32,7 +32,12 @@ function resolveLocale(url: URL): Locale {
   return "en";
 }
 
+function resolveSiteDomain(): string {
+  return import.meta.env.SITE_DOMAIN || process.env.SITE_DOMAIN || "ecthrwatch.org";
+}
+
 export const onRequest = defineMiddleware((context, next) => {
   context.locals.locale = resolveLocale(context.url);
+  context.locals.siteDomain = resolveSiteDomain();
   return next();
 });
