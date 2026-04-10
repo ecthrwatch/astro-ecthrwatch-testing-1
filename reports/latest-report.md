@@ -1,163 +1,98 @@
-# Astro Migration Project — Comprehensive Report
+# Astro Migration Project — Latest Report
 
-**Last updated:** 2026-04-10 08:04 +0800 (Step 17)
-
----
-
-## User Inputs Log
-
-### Session 1 — 2026-04-08
-1. **Initial request:** Create minimal Astro 6 site with i18n for English, French, and Chinese Simplified, deployable to AWS Amplify with password protection.
-2. "Can you read the CLAUDE.md file I put in this project folder?"
-3. Request to set up per-language dev servers on separate ports (4321/4322/4323) mimicking production subdomains.
-4. "When running on localhost:4321 (English), the content should display at the root '/' directly, not redirect to '/en/'... Each language behaves as its own standalone site at the root."
-
-### Session 2 — 2026-04-09
-5. "Did you set up the testing website on AWS Amplify?" → "Yes, create 3 Amplify apps connected to one private GitHub repo (astro-ecthrwatch-testing-1)."
-6. Detailed request to visit 3 ecthrwatch.org production sites and replicate nav bar, footer, dark mode, language switcher.
-7. Request to create pages for each top menu item with locale-specific slugs from production sites, replicate English AI analysis content.
-8. Detailed Hugo migration read-only exploration request (5 steps: layouts, Gloria Santona event, data files, shortcodes, report).
-9. "Good analysis. Now build it." — Gloria Santona event migration with MDX components, content collection, SITE_DOMAIN filtering.
-10. "Save everything you just output since my last message to reports/latest-report.md"
-11. "Can you also include somewhere, somehow, the steps you ran?"
-12. "After completing each step, save a summary... to reports/history/step-NNNN-YYYY-MM-DD-HHMM_[TIME zone]..."
-
-### Session 3 — 2026-04-10
-13. "this file 'latest-report-2026-04-10-0740_0800.md' in history is wrong, it should listed as the latest step and kept for future archives and we also keep the latest report one folder above. So, we always keep a copy of the latest output: latest-report.md in reports/ And the latest complete full output with all of the steps taken should also appear as the highest number in history/"
-14. "Shouldn't it be recursive? in the sense that this output you've just output, why don't I see it? In addition to that, I also want you to keep track of all of the input I feed to you Claude Code."
+**Last updated:** 2026-04-10 ~08:20 +0800 (v2 step-0032)
 
 ---
 
-## Step History
+## Report Structure
 
-### Step 1 — 2026-04-08 09:19 +0800
-**Commit:** `Initial Astro 6 setup with i18n (en/fr/zh-cn)`
-- Initialized Astro 6.1.4 project with strict TypeScript
-- Created `src/i18n/translations.ts` with `languages`, `Locale` type, `siteUrls`, `translations`
-- Created `src/i18n/utils.ts` with `getLocaleFromURL()` and `t()` helper
-- Created `src/middleware.ts` for locale detection from URL path
-- Created `src/layouts/Base.astro` and `src/pages/index.astro`
-- Configured `astro.config.mjs` with i18n routing (prefixDefaultLocale: true)
+```
+reports/
+├── latest-report.md                    ← this file (always current)
+└── history/
+    ├── step-0001-*_0800.md             ← legacy format (output-only, steps 1-17)
+    ├── step-0016-*_0800.md             ← restored 6kb file (never deleted)
+    ├── step-0017-*_0800.md             ← comprehensive report v1
+    └── v2/                             ← new format: separate input/output files
+        ├── step-0001-*_input.md        ← user message (verbatim)
+        ├── step-0002-*_output.md       ← Claude response (summary + commits)
+        ├── ...                         ← alternating input/output
+        └── step-0032-*_output.md       ← this restructuring action
+```
 
-### Step 2 — 2026-04-08 09:54 +0800
-**Commit:** `Add per-language dev servers on separate ports`
-- Installed `concurrently` for parallel dev servers
-- Added scripts: `dev:en` (4321), `dev:fr` (4322), `dev:zh` (4323), `dev` (all 3)
-- Added `devPorts` mapping and port-based locale detection in middleware
+### Naming convention
+```
+step-NNNN-YYYY-MM-DD-HHMM_0800_input.md    — user message
+step-NNNN-YYYY-MM-DD-HHMM_0800_output.md   — Claude response
+```
 
-### Step 3 — 2026-04-08 10:01 +0800
-**Commit:** `Refactor to domain-based i18n — each language served at root /`
-- Removed Astro's built-in i18n routing (was path-based `/en/`, `/fr/`)
-- Each language now served at root `/` with LOCALE env var controlling which language
-- Middleware resolves locale from: LOCALE env var → port number → fallback "en"
-- Updated build scripts: `build:en`, `build:fr`, `build:zh` with LOCALE env var
-
-### Step 4 — 2026-04-09 16:04 +0800
-**Commit:** `Expand translations with nav, footer, and theme keys`
-- Added `navKeys` array and full translation keys for nav items, footer, theme toggle
-
-### Step 5 — 2026-04-09 16:05 +0800
-**Commit:** `Add global CSS with light/dark theme variables`
-- CSS custom properties for light/dark themes
-- Nav, footer, toggle, dropdown, hamburger, page-content styles
-- Mobile responsive at 768px breakpoint
-
-### Step 6 — 2026-04-09 16:05 +0800
-**Commit:** `Add Nav, Footer, and ThemeToggle components`
-- `Nav.astro` — brand link, nav items, ThemeToggle, language switcher dropdown
-- `Footer.astro` — org name + copyright with locale-specific author name
-- `ThemeToggle.astro` — 3-button toggle (light/dark/auto) with localStorage
-
-### Step 7 — 2026-04-09 16:05 +0800
-**Commit:** `Update Base layout with Nav/Footer and theme init script`
-- Integrated Nav + Footer into Base layout
-- Added inline `<head>` script to prevent FOUC on theme load
-
-### Step 8 — 2026-04-09 18:49 +0800
-**Commit:** `Add nav slug mappings and page titles to translations`
-- `navSlugs` mapping: each nav key → locale-specific URL slug
-- Page title translations for all sections
-
-### Step 9 — 2026-04-09 18:50 +0800
-**Commit:** `Add dynamic page route and AI analysis content`
-- `src/pages/[slug].astro` — dynamic route generating 12 paths (4 sections × 3 locales)
-- `AiAnalysisContent.astro` — English AI analysis page content
-
-### Step 10 — 2026-04-09 18:51 +0800
-**Commit:** `Update Nav to link to locale-specific page slugs`
-- Nav links now use `navSlugs[key][locale]` for correct locale-specific URLs
-
-### Step 11 — 2026-04-09 22:12 +0800
-**Commit:** `Copy Hugo data files and create data loader`
-- Installed `@astrojs/mdx` and `js-yaml`
-- Copied 12 YAML data files from Hugo into `src/data/` (dictionaries, persons, signatures)
-- Created `src/data/loader.ts` with `getDict()`, `getPerson()`, `getOriginalText()`, `getSignature()`, `renderInlineMarkdown()`
-
-### Step 12 — 2026-04-09 22:12 +0800
-**Commit:** `Create MDX components: Dict, Person, Original, ImgProc, Signature`
-- 5 Astro components replacing Hugo shortcodes
-- All read locale from `Astro.locals.locale`
-
-### Step 13 — 2026-04-09 22:15 +0800
-**Commit:** `Set up timeline content collection with Gloria Santona event`
-- `src/content.config.ts` with Zod schema for timeline collection
-- Converted Hugo `index.en.md` → `src/content/timeline/2023-01-30-gloria-santona/index.mdx`
-- Added SITE_DOMAIN env var to middleware and env.d.ts
-
-### Step 14 — 2026-04-09 22:17 +0800
-**Commit:** `Create timeline list and event page routes`
-- Timeline list page with SITE_DOMAIN filtering, reverse chronological sort
-- Event detail page with `<Content />` MDX rendering
-- Excluded `nav.timeline` from `[slug].astro` getStaticPaths
-
-### Step 15 — 2026-04-09 22:23 +0800
-**Commit:** `Add event assets to public directory for static serving`
-- Copied PNGs/PDFs to `public/` for static serving (content collection files aren't served as assets)
-- Pushed steps 11–15 to GitHub, all 3 Amplify apps auto-building
-
-### Step 16 — 2026-04-10 08:04 +0800
-**Commit:** `Organize report files: latest-report.md + numbered history archive`
-- **User input:** "this file 'latest-report-2026-04-10-0740_0800.md' in history is wrong..."
-- Renamed misplaced file → `step-0016` in history
-- Established pattern: `reports/latest-report.md` always exists + highest-numbered step in history
-- Committed all 17 report files (previously untracked)
-- Deleted duplicate files (`latest-report copy.md`, `latest-report copy 2.md`)
-
-### Step 17 — 2026-04-10 (pending commit)
-**What:** Make reporting recursive + track user inputs
-- **User input:** "Shouldn't it be recursive? ... I also want you to keep track of all of the input I feed to you Claude Code."
-- Rewrote step-0016 to document what it actually did (was incorrectly a copy of the steps 11–15 report)
-- Created this comprehensive latest-report.md with full step history + user inputs log
-- Established going-forward rules:
-  1. Every action is documented (recursive reporting)
-  2. Every user input is logged
-  3. `reports/latest-report.md` always exists
-  4. Same content archived as highest-numbered step in `reports/history/`
+### Rules
+1. **Never delete anything** — treat it like accounting
+2. **Inputs and outputs are always separate files**
+3. **Reporting is recursive** — the act of reporting is itself documented
+4. **Sequential numbering** — alternating input (odd) / output (even)
+5. **`reports/latest-report.md`** always exists as the current state
 
 ---
 
-## Architecture Summary
+## Complete Interaction Log (v2)
 
-### Domain-based i18n
-- `LOCALE` env var selects language at build time (en/fr/zh-cn)
-- Each language deploys to its own subdomain/domain at root `/`
-- Middleware sets `Astro.locals.locale` per-request
-- Port-based detection in dev mode (4321=en, 4322=fr, 4323=zh-cn)
+| Step | Type | Date | Summary |
+|------|------|------|---------|
+| 0001 | input | 2026-04-08 ~09:15 | Create minimal Astro 6 site with i18n for 3 languages |
+| 0002 | output | 2026-04-08 09:19 | Initial Astro 6 setup → commit step-1 |
+| 0003 | input | 2026-04-08 ~09:20 | Read CLAUDE.md file |
+| 0004 | output | 2026-04-08 ~09:20 | Acknowledged CLAUDE.md rules |
+| 0005 | input | 2026-04-08 ~09:50 | Set up per-language dev servers on separate ports |
+| 0006 | output | 2026-04-08 09:54 | Per-language dev servers → commit step-2 |
+| 0007 | input | 2026-04-08 ~09:58 | Content at root /, not /en/ |
+| 0008 | output | 2026-04-08 10:01 | Domain-based i18n refactor → commit step-3 |
+| 0009 | input | 2026-04-09 ~15:55 | Did you set up AWS Amplify? |
+| 0010 | output | 2026-04-09 ~15:55 | Discussion about Amplify |
+| 0011 | input | 2026-04-09 ~15:56 | Yes, create 3 Amplify apps |
+| 0012 | output | 2026-04-09 ~15:58 | AWS Amplify setup (3 apps, custom domains, basic auth) |
+| 0013 | input | 2026-04-09 ~16:00 | Replicate production site nav/footer/dark mode |
+| 0014 | output | 2026-04-09 16:04–16:05 | UI components → commits step-4 through step-7 |
+| 0015 | input | 2026-04-09 ~18:45 | Create pages for menu items with locale slugs |
+| 0016 | output | 2026-04-09 18:49–18:51 | Page routes + AI analysis → commits step-8 through step-10 |
+| 0017 | input | 2026-04-09 ~22:00 | Hugo migration read-only exploration (5 steps) |
+| 0018 | output | 2026-04-09 ~22:05 | Migration analysis report |
+| 0019 | input | 2026-04-09 ~22:10 | "Good analysis. Now build it." |
+| 0020 | output | 2026-04-09 22:12–22:23 | Gloria Santona migration → commits step-11 through step-15 |
+| 0021 | input | 2026-04-09 ~22:25 | Save output to reports/latest-report.md |
+| 0022 | output | 2026-04-09 ~22:26 | Created latest-report.md |
+| 0023 | input | 2026-04-09 ~22:28 | Include the steps you ran |
+| 0024 | output | 2026-04-09 ~22:30 | Discussion about step tracking format |
+| 0025 | input | 2026-04-09 ~22:32 | Step history format: step-NNNN-TIMESTAMP.md |
+| 0026 | output | 2026-04-10 ~07:40 | Created step history files with git timestamps |
+| 0027 | input | 2026-04-10 ~07:45 | Fix report organization (latest-report.md + highest step) |
+| 0028 | output | 2026-04-10 08:04 | Organized reports → commit step-16 |
+| 0029 | input | 2026-04-10 ~08:06 | Make reporting recursive + track inputs |
+| 0030 | output | 2026-04-10 08:12 | Recursive reporting → commit step-17 |
+| 0031 | input | 2026-04-10 ~08:15 | Separate input/output files, never delete, restore 6kb file |
+| 0032 | output | 2026-04-10 ~08:20 | Created v2 input/output structure (this action) |
 
-### Content Collections
-- Timeline events in `src/content/timeline/` with glob loader + Zod schema
-- `SITE_DOMAIN` env var filters events by `CONF_websites` frontmatter
-- Hugo shortcodes → MDX components (Dict, Person, Original, ImgProc, Signature)
-- YAML data files with locale-aware directory mapping (`zh-cn` → `zh`)
+---
 
-### Deployment
-- 3 AWS Amplify apps from 1 GitHub repo (`astro-ecthrwatch-testing-1`)
-- Each app sets `LOCALE` + `SITE_DOMAIN` env vars
-- Basic auth password protection enabled
+## Git Commits (code changes)
 
-### Reporting Rules (established Step 17)
-1. After each step → save step summary to `reports/history/step-NNNN-YYYY-MM-DD-HHMM_0800.md`
-2. `reports/latest-report.md` ALWAYS exists — updated after each batch of work with full comprehensive output
-3. The highest-numbered step in history is the same full report
-4. All user inputs are logged in the "User Inputs Log" section
-5. Reporting is recursive — the act of reporting is itself a documented step
+| Commit # | Date | Message |
+|----------|------|---------|
+| step-1 | 2026-04-08 09:19 | Initial Astro 6 setup with i18n (en/fr/zh-cn) |
+| step-2 | 2026-04-08 09:54 | Add per-language dev servers on separate ports |
+| step-3 | 2026-04-08 10:01 | Refactor to domain-based i18n — each language served at root / |
+| step-4 | 2026-04-09 16:04 | Expand translations with nav, footer, and theme keys |
+| step-5 | 2026-04-09 16:05 | Add global CSS with light/dark theme variables |
+| step-6 | 2026-04-09 16:05 | Add Nav, Footer, and ThemeToggle components |
+| step-7 | 2026-04-09 16:05 | Update Base layout with Nav/Footer and theme init script |
+| step-8 | 2026-04-09 18:49 | Add nav slug mappings and page titles to translations |
+| step-9 | 2026-04-09 18:50 | Add dynamic page route and AI analysis content |
+| step-10 | 2026-04-09 18:51 | Update Nav to link to locale-specific page slugs |
+| step-11 | 2026-04-09 22:12 | Copy Hugo data files and create data loader |
+| step-12 | 2026-04-09 22:12 | Create MDX components: Dict, Person, Original, ImgProc, Signature |
+| step-13 | 2026-04-09 22:15 | Set up timeline content collection with Gloria Santona event |
+| step-14 | 2026-04-09 22:17 | Create timeline list and event page routes |
+| step-15 | 2026-04-09 22:23 | Add event assets to public directory for static serving |
+| step-16 | 2026-04-10 08:04 | Organize report files: latest-report.md + numbered history archive |
+| step-17 | 2026-04-10 08:12 | Make reporting recursive + track user inputs |
+| step-18 | 2026-04-10 (pending) | Restructure reports: separate input/output files |
