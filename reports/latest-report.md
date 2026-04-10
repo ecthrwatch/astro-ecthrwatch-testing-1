@@ -1,6 +1,6 @@
 # Astro Migration Project — Latest Report
 
-**Last updated:** 2026-04-10 ~08:20 +0800 (v2 step-0032)
+**Last updated:** 2026-04-10 ~08:30 +0800 (v2 step-0034)
 
 ---
 
@@ -71,6 +71,8 @@ step-NNNN-YYYY-MM-DD-HHMM_0800_output.md   — Claude response
 | 0030 | output | 2026-04-10 08:12 | Recursive reporting → commit step-17 |
 | 0031 | input | 2026-04-10 ~08:15 | Separate input/output files, never delete, restore 6kb file |
 | 0032 | output | 2026-04-10 ~08:20 | Created v2 input/output structure (this action) |
+| 0033 | input | 2026-04-10 ~08:25 | Output files should have verbatim content, not just summaries |
+| 0034 | output | 2026-04-10 ~08:30 | Added verbatim output to step-0032, established summary+verbatim format |
 
 ---
 
@@ -95,4 +97,5 @@ step-NNNN-YYYY-MM-DD-HHMM_0800_output.md   — Claude response
 | step-15 | 2026-04-09 22:23 | Add event assets to public directory for static serving |
 | step-16 | 2026-04-10 08:04 | Organize report files: latest-report.md + numbered history archive |
 | step-17 | 2026-04-10 08:12 | Make reporting recursive + track user inputs |
-| step-18 | 2026-04-10 (pending) | Restructure reports: separate input/output files |
+| step-18 | 2026-04-10 08:20 | Restructure reports: separate input/output files |
+| step-19 | 2026-04-10 ~08:30 | Add verbatim output to _output.md files (summary + full transcript) |
