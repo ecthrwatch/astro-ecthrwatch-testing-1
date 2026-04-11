@@ -8,7 +8,7 @@ Source: `/Users/vlcshanghai/code/claude_code_project_1/old_hugo_working_copy/web
 
 | # | Folder Name | Status | Date Migrated | Notes |
 |---|-------------|--------|---------------|-------|
-| 1 | 1997-03-03_1330_0000_index-on-censorship-guttenplan-1997-mcprisoners-of-conscience | PENDING | | |
+| 1 | 1997-03-03_1330_0000_index-on-censorship-guttenplan-1997-mcprisoners-of-conscience | DONE | 2026-04-11 | McPrisoners of Conscience article |
 | 2 | 1998_TEMPLATE_en | PENDING | | Template folder - may skip |
 | 3 | 1999_TEMPLATE_en | PENDING | | Template folder - may skip |
 | 4 | 2002-03-22_article-published-in-le-parisien-mcdonalds-loterie | PENDING | | |
