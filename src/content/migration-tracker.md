@@ -11,7 +11,7 @@ Source: `/Users/vlcshanghai/code/claude_code_project_1/old_hugo_working_copy/web
 | 1 | 1997-03-03_1330_0000_index-on-censorship-guttenplan-1997-mcprisoners-of-conscience | DONE | 2026-04-11 | McPrisoners of Conscience article |
 | 2 | 1998_TEMPLATE_en | SKIPPED | 2026-04-11 | draft: true (template) |
 | 3 | 1999_TEMPLATE_en | SKIPPED | 2026-04-11 | draft: true (template) |
-| 4 | 2002-03-22_article-published-in-le-parisien-mcdonalds-loterie | PENDING | | |
+| 4 | 2002-03-22_article-published-in-le-parisien-mcdonalds-loterie | DONE | 2026-04-11 | Le Parisien article - no assets |
 | 5 | 2002-09-16_mcdonalds_corporation_v_simon_marketing | PENDING | | |
 | 6 | 2003-11-14_erroneous_judgement_by_paris_appeal_court_euro_mcpailles | PENDING | | |
 | 7 | 2010-11-16-gastronomic-meal-of-the-french-unesco-intangible-cultural-heritage-of-humanity | PENDING | | |
