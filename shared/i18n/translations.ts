@@ -60,6 +60,105 @@ export const navSlugs: Record<Locale, Record<string, string>> = {
   },
 };
 
+// Footer-only page slugs (pages linked from footer but not in the nav)
+export const footerPageKeys = [
+  "footer.about",
+  "footer.cases",
+  "footer.contact",
+  "footer.copyright",
+  "footer.privacy",
+  "footer.other",
+  "footer.laws",
+  "footer.evidence",
+] as const;
+
+export const footerPageSlugs: Record<Locale, Record<string, string>> = {
+  en: {
+    "footer.about": "about",
+    "footer.cases": "cases",
+    "footer.contact": "contact",
+    "footer.copyright": "copyright-and-disclaimer",
+    "footer.privacy": "privacy",
+    "footer.other": "other-websites",
+    "footer.laws": "relevant-laws-and-regulations",
+    "footer.evidence": "list-of-evidence",
+  },
+  fr: {
+    "footer.about": "a-propos",
+    "footer.cases": "",
+    "footer.contact": "",
+    "footer.copyright": "",
+    "footer.privacy": "",
+    "footer.other": "autres-sites",
+    "footer.laws": "lois-et-reglementations-applicables",
+    "footer.evidence": "liste-des-preuves",
+  },
+  it: {
+    "footer.about": "about",
+    "footer.cases": "",
+    "footer.contact": "",
+    "footer.copyright": "",
+    "footer.privacy": "",
+    "footer.other": "other-websites",
+    "footer.laws": "relevant-laws-and-regulations",
+    "footer.evidence": "list-of-evidence",
+  },
+  "zh-cn": {
+    "footer.about": "",
+    "footer.cases": "",
+    "footer.contact": "",
+    "footer.copyright": "",
+    "footer.privacy": "",
+    "footer.other": "qitawangzhan",
+    "footer.laws": "xiangguan-falv-fagui",
+    "footer.evidence": "zhengju-liebiao",
+  },
+};
+
+// Footer page titles
+export const footerPageTitles: Record<Locale, Record<string, string>> = {
+  en: {
+    "footer.about": "About the website ECTHRwatch.org",
+    "footer.cases": "List of cases submitted to the European Court of Human Rights",
+    "footer.contact": "Contact me",
+    "footer.copyright": "Copyright and disclaimer",
+    "footer.privacy": "Privacy",
+    "footer.other": "Websites Related to the Aggravated Fraud and Money Laundering Case Involving McDonald's Corporation",
+    "footer.laws": "Relevant Laws and Regulations",
+    "footer.evidence": "List of Evidence (non-exhaustive list)",
+  },
+  fr: {
+    "footer.about": "\u00c0 propos du site ECTHRwatch.org",
+    "footer.cases": "",
+    "footer.contact": "",
+    "footer.copyright": "",
+    "footer.privacy": "",
+    "footer.other": "Sites internet li\u00e9s \u00e0 l\u2019affaire des escroqueries aggrav\u00e9es et du blanchiment d\u2019argent commis par le groupe McDonald\u2019s Corporation",
+    "footer.laws": "Lois et R\u00e9glementations Applicables",
+    "footer.evidence": "Liste des preuves (liste non exhaustive)",
+  },
+  it: {
+    "footer.about": "About",
+    "footer.cases": "",
+    "footer.contact": "",
+    "footer.copyright": "",
+    "footer.privacy": "",
+    "footer.other": "Other websites",
+    "footer.laws": "Relevant Laws and Regulations",
+    "footer.evidence": "List of Evidence",
+  },
+  "zh-cn": {
+    "footer.about": "",
+    "footer.cases": "",
+    "footer.contact": "",
+    "footer.copyright": "",
+    "footer.privacy": "",
+    "footer.other": "\u4e0e\u9ea6\u5f53\u52b3\u516c\u53f8\u6d89\u53ca\u7684\u91cd\u5927\u8bc8\u9a97\u4e0e\u6d17\u94b1\u6848\u76f8\u5173\u7684\u7f51\u7ad9\u5217\u8868",
+    "footer.laws": "\u76f8\u5173\u6cd5\u5f8b\u6cd5\u89c4",
+    "footer.evidence": "\u8bc1\u636e\u5217\u8868\uff08\u975e\u8be6\u5c3d\u6e05\u5355\uff09",
+  },
+};
+
 export const translations: Record<Locale, Record<string, string>> = {
   en: {
     "site.title": "ECTHRwatch.org",
