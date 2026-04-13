@@ -280,6 +280,20 @@ main {
   transition: background-color 0.2s, border-color 0.2s;
 }
 
+.footer-links {
+  margin-bottom: 0.5rem;
+  line-height: 1.8;
+}
+
+.footer-links a {
+  white-space: nowrap;
+}
+
+.footer-sep {
+  color: var(--color-text);
+  opacity: 0.5;
+}
+
 .footer-org {
   font-weight: 600;
   margin-bottom: 0.25rem;
