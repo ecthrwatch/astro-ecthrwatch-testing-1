@@ -4,6 +4,7 @@ export const siteConfig = {
   languages: {
     en: "www.thechristianintegrity.com",
     fr: "fr.thechristianintegrity.com",
+    it: "it.thechristianintegrity.com",
     "zh-cn": "zh.thechristianintegrity.com",
   },
   defaultLocale: "en" as const,

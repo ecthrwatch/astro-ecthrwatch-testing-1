@@ -1,6 +1,7 @@
 export const languages = {
   en: "English",
   fr: "Français",
+  it: "Italiano",
   "zh-cn": "简体中文",
 } as const;
 
@@ -9,12 +10,14 @@ export type Locale = keyof typeof languages;
 export const siteUrls: Record<Locale, string> = {
   en: "https://astro-testing-1-en.ecthrwatch.org",
   fr: "https://astro-testing-1-fr.ecthrwatch.org",
+  it: "https://it.ecthrwatch.org",
   "zh-cn": "https://astro-testing-1-zh.ecthrwatch.org",
 };
 
 export const devPorts: Record<Locale, number> = {
   en: 4321,
   fr: 4322,
+  it: 4324,
   "zh-cn": 4323,
 };
 
@@ -40,6 +43,13 @@ export const navSlugs: Record<Locale, Record<string, string>> = {
     "nav.china": "risques-de-torture-et-de-peine-de-mort-en-chine",
     "nav.legal": "procedures-judiciaires-en-cours",
     "nav.ai": "analyses-par-intelligence-artificielle-confirmant-les-fraudes-de-mcdonalds",
+  },
+  it: {
+    "nav.timeline": "cronologia-degli-eventi-e-lettere-aperte",
+    "nav.cia": "cia-e-coinvolgimento-di-servizi-di-intelligence-stranieri",
+    "nav.china": "rischi-di-tortura-e-pena-di-morte-in-cina",
+    "nav.legal": "procedimenti-giudiziari-in-corso",
+    "nav.ai": "analisi-di-intelligenza-artificiale-che-confermano-i-crimini-di-mcdonalds",
   },
   "zh-cn": {
     "nav.timeline": "shishi-jingguo-yu-gongkaixin-shijianxian",
@@ -93,6 +103,29 @@ export const translations: Record<Locale, Record<string, string>> = {
     "theme.light": "Mode jour",
     "theme.dark": "Mode nuit",
     "theme.auto": "Mode automatique",
+
+    "footer.copyright.name": "Vincent Le Corre",
+    "footer.copyright.url": "https://www.linkedin.com/in/x-v-france/",
+  },
+  it: {
+    "site.title": "ECTHRwatch.org",
+    "site.org": "European Court of Human Rights Watch",
+
+    "nav.timeline": "Cronologia e Lettere Aperte",
+    "nav.cia": "CIA e Intelligence Straniera",
+    "nav.china": "Rischi di Pena di Morte in Cina",
+    "nav.legal": "Procedimenti Giudiziari",
+    "nav.ai": "Analisi tramite IA",
+
+    "page.timeline": "Cronologia degli eventi e lettere aperte",
+    "page.cia": "CIA e coinvolgimento di altri servizi di intelligence stranieri",
+    "page.china": "Rischi di tortura e pena di morte in Cina",
+    "page.legal": "Procedimenti giudiziari in corso",
+    "page.ai": "Analisi di intelligenza artificiale che confermano i crimini di McDonald's",
+
+    "theme.light": "Chiaro",
+    "theme.dark": "Scuro",
+    "theme.auto": "Automatico",
 
     "footer.copyright.name": "Vincent Le Corre",
     "footer.copyright.url": "https://www.linkedin.com/in/x-v-france/",

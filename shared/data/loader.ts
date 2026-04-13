@@ -14,6 +14,7 @@ const dataDir = path.join(process.cwd(), "..", "..", "shared", "data");
 const localeToDir: Record<Locale, string> = {
   en: "en",
   fr: "fr",
+  it: "it",
   "zh-cn": "zh",
 };
 

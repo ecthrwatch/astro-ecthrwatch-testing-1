@@ -4,6 +4,7 @@ export const siteConfig = {
   languages: {
     en: "www.vaticanwatch.org",
     fr: "fr.vaticanwatch.org",
+    it: "it.vaticanwatch.org",
     "zh-cn": "zh.vaticanwatch.org",
   },
   defaultLocale: "en" as const,
