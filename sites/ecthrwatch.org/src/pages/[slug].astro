@@ -1,0 +1,52 @@
+---
+import Base from "@shared/layouts/Base.astro";
+import AiAnalysisContent from "@shared/components/AiAnalysisContent.astro";
+import { t } from "@shared/i18n/utils";
+import type { Locale } from "@shared/i18n/translations";
+import { navSlugs, navKeys } from "@shared/i18n/translations";
+
+export function getStaticPaths() {
+  const paths: { params: { slug: string }; props: { sectionKey: string } }[] = [];
+
+  for (const locale of Object.keys(navSlugs) as Locale[]) {
+    for (const key of navKeys) {
+      // Timeline has its own dedicated route
+      if (key === "nav.timeline") continue;
+      paths.push({
+        params: { slug: navSlugs[locale][key] },
+        props: { sectionKey: key },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { sectionKey } = Astro.props;
+const locale = Astro.locals.locale as Locale;
+
+const pageKey = sectionKey.replace("nav.", "page.");
+const title = t(locale, pageKey);
+
+const isEnglishAi = locale === "en" && sectionKey === "nav.ai";
+---
+<Base locale={locale}>
+  <div class="page-container">
+    <h1>{title}</h1>
+    {isEnglishAi && <AiAnalysisContent />}
+  </div>
+</Base>
+
+<style>
+  .page-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .page-container h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+</style>
