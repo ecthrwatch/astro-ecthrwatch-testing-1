@@ -1,6 +1,7 @@
 import { defineMiddleware } from "astro:middleware";
 import type { Locale } from "@shared/i18n/translations";
 import { languages } from "@shared/i18n/translations";
+import { siteConfig } from "./site-config";
 
 /**
  * Determines the active locale for each request.
@@ -32,12 +33,9 @@ function resolveLocale(url: URL): Locale {
   return "en";
 }
 
-function resolveSiteDomain(): string {
-  return import.meta.env.SITE_DOMAIN || process.env.SITE_DOMAIN || "agreaterchina.com";
-}
-
 export const onRequest = defineMiddleware((context, next) => {
   context.locals.locale = resolveLocale(context.url);
-  context.locals.siteDomain = resolveSiteDomain();
+  context.locals.siteDomain = import.meta.env.SITE_DOMAIN || process.env.SITE_DOMAIN || siteConfig.domain;
+  context.locals.siteName = siteConfig.name;
   return next();
 });
