@@ -3,7 +3,9 @@ import path from "node:path";
 import yaml from "js-yaml";
 import type { Locale } from "../i18n/translations";
 
-const dataDir = path.join(process.cwd(), "src/data");
+// During build, process.cwd() is the site directory (e.g. sites/ecthrwatch.org/).
+// The shared data files are at ../../shared/data/ relative to that.
+const dataDir = path.join(process.cwd(), "..", "..", "shared", "data");
 
 /**
  * Maps our locale codes to the directory names used in the Hugo data files.

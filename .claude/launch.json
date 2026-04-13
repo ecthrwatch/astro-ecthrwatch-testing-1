@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev-en",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:en"],
+      "port": 4321,
+      "cwd": "sites/ecthrwatch.org"
+    },
+    {
+      "name": "dev-fr",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:fr"],
+      "port": 4322,
+      "cwd": "sites/ecthrwatch.org"
+    },
+    {
+      "name": "dev-zh",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:zh"],
+      "port": 4323,
+      "cwd": "sites/ecthrwatch.org"
+    }
+  ]
+}

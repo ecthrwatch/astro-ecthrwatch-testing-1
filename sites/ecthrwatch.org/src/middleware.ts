@@ -1,6 +1,6 @@
 import { defineMiddleware } from "astro:middleware";
-import type { Locale } from "./i18n/translations";
-import { languages } from "./i18n/translations";
+import type { Locale } from "@shared/i18n/translations";
+import { languages } from "@shared/i18n/translations";
 
 /**
  * Determines the active locale for each request.
