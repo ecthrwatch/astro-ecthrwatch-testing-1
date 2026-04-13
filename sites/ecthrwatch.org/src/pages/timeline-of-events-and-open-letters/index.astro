@@ -38,7 +38,7 @@ function estimateReadingTime(description: string): number {
         const href = `/timeline-of-events-and-open-letters/${slug}/`;
         const readMin = estimateReadingTime(event.data.description);
         const featImg = event.data.featuredImage;
-        const imgSrc = featImg ? `${href}${featImg.replace(/^images\//, "")}` : null;
+        const imgSrc = featImg ? `/images/featured/${featImg.replace(/^images\//, "")}` : null;
         return (
           <div class="timeline-card">
             <div class="card-content" data-has-image={imgSrc ? "true" : undefined}>
