@@ -10,6 +10,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+const siteName = Astro.locals.siteName ?? "Site";
 ---
 <!doctype html>
 <html lang={locale}>
@@ -19,7 +20,7 @@ const { locale } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet" />
-    <title>{t(locale, "site.title")}</title>
+    <title>{siteName}</title>
     <script is:inline>
       (function () {
         var pref = localStorage.getItem("theme") || "auto";

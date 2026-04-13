@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+const siteName = Astro.locals.siteName ?? "Site";
 
 const isDev = import.meta.env.DEV;
 
@@ -21,7 +22,7 @@ function langUrl(target: Locale): string {
 ---
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-brand">{t(locale, "site.title")}</a>
+    <a href="/" class="nav-brand">{siteName}</a>
 
     <button
       class="nav-hamburger"
