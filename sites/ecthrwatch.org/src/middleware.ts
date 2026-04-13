@@ -37,5 +37,6 @@ export const onRequest = defineMiddleware((context, next) => {
   context.locals.locale = resolveLocale(context.url);
   context.locals.siteDomain = import.meta.env.SITE_DOMAIN || process.env.SITE_DOMAIN || siteConfig.domain;
   context.locals.siteName = siteConfig.name;
+  context.locals.timelineShowAll = siteConfig.timelineShowAll ?? false;
   return next();
 });

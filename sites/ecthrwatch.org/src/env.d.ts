@@ -5,5 +5,6 @@ declare namespace App {
     locale: import("@shared/i18n/translations").Locale;
     siteDomain: string;
     siteName: string;
+    timelineShowAll: boolean;
   }
 }
