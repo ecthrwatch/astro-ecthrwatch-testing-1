@@ -1,24 +1,9 @@
 {
-  "name": "astro-ecthrwatch-testing",
+  "name": "astro-ecthrwatch-monorepo",
   "type": "module",
-  "scripts": {
-    "dev": "concurrently -n en,fr,zh -c blue,magenta,green \"npm run dev:en\" \"npm run dev:fr\" \"npm run dev:zh\"",
-    "dev:en": "astro dev --root sites/ecthrwatch.org --port 4321",
-    "dev:fr": "astro dev --root sites/ecthrwatch.org --port 4322",
-    "dev:zh": "astro dev --root sites/ecthrwatch.org --port 4323",
-    "build": "astro build --root sites/ecthrwatch.org",
-    "build:en": "LOCALE=en astro build --root sites/ecthrwatch.org",
-    "build:fr": "LOCALE=fr astro build --root sites/ecthrwatch.org",
-    "build:zh": "LOCALE=zh-cn astro build --root sites/ecthrwatch.org",
-    "preview": "astro preview --root sites/ecthrwatch.org"
-  },
+  "private": true,
   "dependencies": {
-    "@astrojs/mdx": "^5.0.3",
-    "astro": "^6.1.4",
     "js-yaml": "^4.1.1",
     "marked": "^18.0.0"
-  },
-  "devDependencies": {
-    "concurrently": "^9.2.1"
   }
 }
