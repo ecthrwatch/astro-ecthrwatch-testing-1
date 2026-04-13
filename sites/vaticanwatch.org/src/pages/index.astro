@@ -1,0 +1,12 @@
+---
+import Base from "@shared/layouts/Base.astro";
+import type { Locale } from "@shared/i18n/translations";
+
+const locale = Astro.locals.locale as Locale;
+---
+<Base locale={locale}>
+  <div style="max-width:800px;margin:0 auto;padding:2rem 1rem;">
+    <h1>Vatican Watch</h1>
+    <p>Site under construction.</p>
+  </div>
+</Base>
